@@ -12,7 +12,7 @@ namespace Common.Data
         private int _recipeID;
         private string _description;
 
-        public int RecipeDescription
+        public int RecipeDescriptionID
         {
             get { return _recipeDescriptionID; }
             set { _recipeDescriptionID = value; }
