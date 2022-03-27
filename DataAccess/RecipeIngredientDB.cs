@@ -12,7 +12,7 @@ namespace DataAccess
 {
     public class RecipeIngredientDB
     {
-        public List<RecipeIngredientData> GetRecipeIngredientList()
+        public List<RecipeIngredientData> GetRecipeIngredientList(int recipeID)
         {
             try
             {
@@ -24,6 +24,7 @@ namespace DataAccess
                     SqlConn.Open();
                     SqlCommand SqlCmd = new SqlCommand(SpName, SqlConn);
                     SqlCmd.CommandType = CommandType.StoredProcedure;
+                    SqlCmd.Parameters.Add(new SqlParameter("@RecipeId", recipeID));
                     using (SqlDataReader Reader = SqlCmd.ExecuteReader())
                     {
                         if (Reader.HasRows)
@@ -50,7 +51,6 @@ namespace DataAccess
             }
         }
 
-
         public int InsertUpdateRecipeIngredient(RecipeIngredientData recipeIngredient, SqlTransaction SqlTran)
         {
             try
@@ -75,7 +75,7 @@ namespace DataAccess
             }
         }
 
-        public int DeleteRecipesIngredient(string recipeIngredientIDs, SqlTransaction SqlTran)
+        public int DeleteRecipeIngredients(string recipeIngredientIDs, SqlTransaction SqlTran)
         {
             try
             {
