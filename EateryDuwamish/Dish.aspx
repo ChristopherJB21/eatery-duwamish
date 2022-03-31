@@ -139,7 +139,7 @@
                             <div class="col-lg-2">
                             </div>
                             <div class="col-lg-2">
-                                <asp:Button runat="server" ID="btnSave" CssClass="btn btn-primary" Width="100px"
+                                <asp:Button runat="server" ID="btnSave" CssClass="btn btn-primary" Width="150px"
                                     Text="SAVE" OnClick="btnSave_Click" ValidationGroup="InsertUpdateDish">
                                 </asp:Button>
                             </div>
@@ -185,26 +185,33 @@
                                             class="sorting_asc text-center">
                                             Price
                                         </th>
+                                        <th aria-sort="ascending" style="" colspan="1" rowspan="1" tabindex="0"
+                                            class="sorting_asc text-center">
+                                            Recipe
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                         </HeaderTemplate>
                         <ItemTemplate>
-                            <tr class="odd" role="row" runat="server" onclick="">
+                            <tr class="odd" role="row" runat="server">
                                 <td>
                                     <div style="text-align: center;">
                                         <asp:CheckBox ID="chkChoose" CssClass="checkDelete" runat="server">
                                         </asp:CheckBox>
                                     </div>
                                 </td>
-                                <td>
+                                <td  class="text-center align-middle">
                                     <asp:LinkButton ID="lbDishName" runat="server" CommandName="EDIT"></asp:LinkButton>
                                 </td>
-                                <td>
+                                <td  class="text-center align-middle">
                                     <asp:Literal ID="litDishType" runat="server"></asp:Literal>
                                 </td>
-                                <td>
+                                <td  class="text-center align-middle">
                                     <asp:Literal ID="litPrice" runat="server"></asp:Literal>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <asp:Button CssClass="btn btn-primary" ID="btnRecipe" runat="server" CommandName="RECIPE" Text="RECIPE" ></asp:Button>
                                 </td>
                             </tr>
                         </ItemTemplate>

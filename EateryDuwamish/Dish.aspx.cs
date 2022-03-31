@@ -80,9 +80,12 @@ namespace EateryDuwamish
                 LinkButton lbDishName = (LinkButton)e.Item.FindControl("lbDishName");
                 Literal litDishType = (Literal)e.Item.FindControl("litDishType");
                 Literal litPrice = (Literal)e.Item.FindControl("litPrice");
+                Button btnRecipe = (Button)e.Item.FindControl("btnRecipe");
 
                 lbDishName.Text = dish.DishName;
                 lbDishName.CommandArgument = dish.DishID.ToString();
+
+                btnRecipe.CommandArgument = dish.DishID.ToString();
 
                 DishTypeData DishType = new DishTypeSystem().GetDishTypeByID(dish.DishTypeID);
                 litDishType.Text = DishType.DishTypeName;
@@ -111,7 +114,17 @@ namespace EateryDuwamish
                 });
                 litFormType.Text = $"UBAH: {lbDishName.Text}";
                 pnlFormDish.Visible = true;
+                btnSave.Text = "SAVE CHANGE";
                 txtDishName.Focus();
+            } else if (e.CommandName == "RECIPE")
+            {
+                int dishID = Convert.ToInt32(e.CommandArgument.ToString());
+                LinkButton lbDishName = (LinkButton)e.Item.FindControl("lbDishName");
+
+                Session["DishID"] = dishID.ToString();
+                Session["DishName"] = lbDishName.Text;
+                
+                Response.Redirect("Recipes.aspx");
             }
         }
         #endregion
@@ -138,6 +151,7 @@ namespace EateryDuwamish
             ResetForm();
             litFormType.Text = "TAMBAH";
             pnlFormDish.Visible = true;
+            btnSave.Text = "SAVE";
             txtDishName.Focus();
         }
         protected void btnDelete_Click(object sender, EventArgs e)
