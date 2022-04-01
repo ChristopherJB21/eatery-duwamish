@@ -11,11 +11,11 @@ namespace BusinessFacade
 {
     public class RecipeDescriptionSystem
     {
-        public List<RecipeDescriptionData> GetRecipeDescriptionList(int recipeID)
+        public RecipeDescriptionData GetRecipeDescription(int recipeID)
         {
             try
             {
-                return new RecipeDescriptionDB().GetRecipeDescriptionList(recipeID);
+                return new RecipeDescriptionDB().GetRecipeDescription(recipeID);
             }
             catch (Exception ex)
             {

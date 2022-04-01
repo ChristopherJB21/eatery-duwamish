@@ -12,12 +12,12 @@ namespace DataAccess
 {
     public class RecipeDescriptionDB
     {
-        public List<RecipeDescriptionData> GetRecipeDescriptionList(int recipeID)
+        public RecipeDescriptionData GetRecipeDescription(int recipeID)
         {
             try
             {
                 string SpName = "dbo.RecipeDescription_Get";
-                List<RecipeDescriptionData> ListRecipeDescription = new List<RecipeDescriptionData>();
+                RecipeDescriptionData RecipeDescription = new RecipeDescriptionData();
                 using (SqlConnection SqlConn = new SqlConnection())
                 {
                     SqlConn.ConnectionString = SystemConfigurations.EateryConnectionString;
@@ -27,21 +27,16 @@ namespace DataAccess
                     SqlCmd.Parameters.Add(new SqlParameter("@RecipeId", recipeID));
                     using (SqlDataReader Reader = SqlCmd.ExecuteReader())
                     {
-                        if (Reader.HasRows)
+                        if (Reader.HasRows && Reader.Read())
                         {
-                            while (Reader.Read())
-                            {
-                                RecipeDescriptionData recipeDescription = new RecipeDescriptionData();
-                                recipeDescription.RecipeDescriptionID = Convert.ToInt32(Reader["RecipeDescriptionID"]);
-                                recipeDescription.RecipeID = Convert.ToInt32(Reader["RecipeID"]);
-                                recipeDescription.Description = Convert.ToString(Reader["Description"]);
-                                ListRecipeDescription.Add(recipeDescription);
-                            }
+                            RecipeDescription.RecipeDescriptionID = Convert.ToInt32(Reader["RecipeDescriptionID"]);
+                            RecipeDescription.RecipeID = Convert.ToInt32(Reader["RecipeID"]);
+                            RecipeDescription.Description = Convert.ToString(Reader["Description"]);
                         }
                     }
                     SqlConn.Close();
                 }
-                return ListRecipeDescription;
+                return RecipeDescription;
             }
             catch (Exception ex)
             {
@@ -61,7 +56,6 @@ namespace DataAccess
                 RecipeDescriptionId.Direction = ParameterDirection.InputOutput;
                 SqlCmd.Parameters.Add(RecipeDescriptionId);
 
-                SqlCmd.Parameters.Add(new SqlParameter("@RecipeDescriptionID", recipeDescription.RecipeDescriptionID));
                 SqlCmd.Parameters.Add(new SqlParameter("@RecipeID", recipeDescription.RecipeID));
                 SqlCmd.Parameters.Add(new SqlParameter("@Description", recipeDescription.Description));
                 return SqlCmd.ExecuteNonQuery();

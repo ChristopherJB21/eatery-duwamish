@@ -19,20 +19,20 @@ namespace EateryDuwamish
             if (!String.IsNullOrEmpty(Session["DishID"] as string))
             {
                 dishID = Convert.ToInt32(Session["DishID"].ToString());
-                litDishID.Text = Session["DishName"].ToString();
-                /*Session.Remove("DishID");*/
-                /*Session.Remove("DishName");*/
+                litDishName.Text = Session["DishName"].ToString().ToUpper();
                 
                 if (!IsPostBack)
                 {
                     ShowNotificationIfExists();
                     LoadRecipeTable();
+                    ClearSession();
                 }
 
             } else
             {
                 Response.Redirect("Dish.aspx");
             }
+            
         }
 
         #region FORM MANAGEMENT
@@ -77,9 +77,12 @@ namespace EateryDuwamish
             {
                 RecipeData recipe = (RecipeData)e.Item.DataItem;
                 LinkButton lbRecipeName = (LinkButton)e.Item.FindControl("lbRecipeName");
+                Button btnDetail = (Button)e.Item.FindControl("btnDetail");
 
                 lbRecipeName.Text = recipe.RecipeName;
                 lbRecipeName.CommandArgument = recipe.RecipeID.ToString();
+
+                btnDetail.CommandArgument = recipe.RecipeID.ToString();
                 
                 CheckBox chkChoose = (CheckBox)e.Item.FindControl("chkChoose");
                 chkChoose.Attributes.Add("data-value", recipe.RecipeID.ToString());
@@ -104,21 +107,17 @@ namespace EateryDuwamish
                 txtRecipeName.Focus();
             } else if (e.CommandName == "DETAIL")
             {
-                /*
                 int recipeID = Convert.ToInt32(e.CommandArgument.ToString());
                 LinkButton lbRecipeName = (LinkButton)e.Item.FindControl("lbRecipeName");
                 
                 Session["RecipeID"] = recipeID.ToString();
                 Session["RecipeName"] = lbRecipeName.Text;
                 
-
-                Response.Redirect("Recipes.aspx");
-                */
+                Response.Redirect("RecipeDetails.aspx");
             }
         }
         #endregion
-
-
+        
         #region BUTTON EVENT MANAGEMENT
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -162,8 +161,7 @@ namespace EateryDuwamish
             }
         }
         #endregion
-
-
+        
         #region NOTIFICATION MANAGEMENT
         private void ShowNotificationIfExists()
         {
@@ -179,6 +177,16 @@ namespace EateryDuwamish
             }
         }
         #endregion
-
+        
+        #region CLEAR SESSION
+        private void ClearSession()
+        {
+            if (!String.IsNullOrEmpty(Session["RecipeID"] as string))
+            {
+                Session.Remove("RecipeID");
+                Session.Remove("RecipeName");
+            }
+        }
+        #endregion
     }
 }

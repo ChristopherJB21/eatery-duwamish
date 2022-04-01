@@ -20,6 +20,7 @@ namespace EateryDuwamish
                 ShowNotificationIfExists();
                 LoadDishTable();
                 LoadDishTypeDropdown();
+                ClearSession();
             }
         }
         #region FORM MANAGEMENT
@@ -189,5 +190,21 @@ namespace EateryDuwamish
         }
         #endregion
 
+        #region CLEAR SESSION
+        private void ClearSession()
+        {
+            if (!String.IsNullOrEmpty(Session["DishID"] as string))
+            {
+                Session.Remove("DishID");
+                Session.Remove("DishName");
+            }
+
+            if (!String.IsNullOrEmpty(Session["RecipeID"] as string))
+            {
+                Session.Remove("RecipeID");
+                Session.Remove("RecipeName");
+            }
+        }
+        #endregion
     }
 }

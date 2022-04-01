@@ -94,13 +94,13 @@ namespace EateryDuwamish {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// litDishID control.
+        /// litDishName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litDishID;
+        protected global::System.Web.UI.WebControls.Literal litDishName;
         
         /// <summary>
         /// btnAdd control.

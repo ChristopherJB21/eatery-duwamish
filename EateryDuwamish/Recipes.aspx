@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Recipes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Recipes.aspx.cs" Inherits="EateryDuwamish.Recipes" %>
 <%@ Register Src="~/UserControl/NotificationControl.ascx" TagName="NotificationControl" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
-        <%--Datatable Configuration--%>
+    <%--Datatable Configuration--%>
     <script type="text/javascript">
         function ConfigureDatatable() {
             var table = null;
@@ -98,7 +98,7 @@
                                     <%--End of Validator--%>
                                 </div>
                             </div>
-                            <%--End of Dish Name Field--%>
+                            <%--End of Recipe Name Field--%>
                         </div>
                         <div class="col-lg-12">
                             <div class="col-lg-2">
@@ -117,7 +117,7 @@
             <div class="row">
                 <div class="table-header">
                     <div class="table-header-title">
-                        <asp:Literal runat="server" ID="litDishID"></asp:Literal>
+                        <asp:Literal runat="server" ID="litDishName"></asp:Literal>
                     </div>
                     <div class="table-header-button">
                         <asp:Button ID="btnAdd" runat="server" Text="ADD" CssClass="btn btn-primary" Width="100px" OnClick="btnAdd_Click" />

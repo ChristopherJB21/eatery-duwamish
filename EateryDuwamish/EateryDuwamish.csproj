@@ -113,6 +113,7 @@
     <Content Include="assets\images\search icon.png" />
     <Content Include="assets\images\view.png" />
     <Content Include="assets\main-stylesheet.css" />
+    <Content Include="RecipeDetails.aspx" />
     <Content Include="Dish.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Home.aspx" />
@@ -148,6 +149,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RecipeDetails.aspx.cs">
+      <DependentUpon>RecipeDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecipeDetails.aspx.designer.cs">
+      <DependentUpon>RecipeDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Dish.aspx.cs">
       <DependentUpon>Dish.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
