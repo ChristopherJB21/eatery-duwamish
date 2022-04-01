@@ -187,7 +187,7 @@ namespace EateryDuwamish
                 if (rowAffected <= 0)
                     throw new Exception("No Data Deleted");
                 Session["delete-success"] = 1;
-                Response.Redirect("Recipes.aspx");
+                Response.Redirect("RecipeDetails.aspx");
             }
             catch (Exception ex)
             {
