@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessRule;
 
 namespace BusinessFacade
 {
@@ -14,7 +15,7 @@ namespace BusinessFacade
         {
             try
             {
-                return new DishTypeDB().GetDishTypeList();
+                return new DishTypeRule().GetDishTypeList();
             }
             catch (Exception ex)
             {
@@ -25,7 +26,7 @@ namespace BusinessFacade
         {
             try
             {
-                return new DishTypeDB().GetDishTypeByID(dishTypeID);
+                return new DishTypeRule().GetDishTypeByID(dishTypeID);
             }
             catch (Exception ex)
             {
